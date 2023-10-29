@@ -5,8 +5,7 @@ import { ListCrewView } from "./views/list-crew/list-crew-view";
 
 /* -- Set up react-query and consume spacex api
  * - Focus on displaying any data with simple queries for now
- * - Later try implementing infinite scrolling (assuming the spacex API has enough data)
- * - I'll write a default query function since every endpoint works basically the same
+ * - Upgrade the 'load more' style of fetching more content to an 'infinite scroll' style
  * -- Styled Components and CSS
  * - flex layout with buttons to filter ships
  * - grid layout to display the ships in cards
@@ -41,9 +40,7 @@ function Homepage() {
   return (
     <>
       <h1>Bun Voyage</h1>
-      <main>
-        <ListCrewView />
-      </main>
+      <ListCrewView />
     </>
   );
 }
