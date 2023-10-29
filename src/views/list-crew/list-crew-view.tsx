@@ -8,7 +8,6 @@ export const ListCrewView = () => {
     isError,
     fetchNextPage,
     hasNextPage,
-    isFetching,
     isFetchingNextPage,
     error,
   } = useInfiniteQuery({
@@ -27,7 +26,6 @@ export const ListCrewView = () => {
         data={data}
         fetchNextPage={fetchNextPage}
         hasNextPage={hasNextPage}
-        isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
     </main>

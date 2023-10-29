@@ -1,12 +1,15 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
-export const ListCrewUI = ({
-  data,
-  fetchNextPage,
-  hasNextPage,
-  isFetching,
-  isFetchingNextPage,
-}) => {
+export const ListCrewUI = ({ data, fetchNextPage, isFetchingNextPage }) => {
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, inView]);
+
   return (
     <section>
       {data.pages.map((crew, i) => {
@@ -28,19 +31,7 @@ export const ListCrewUI = ({
           </Fragment>
         );
       })}
-      <div>
-        <button
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetchingNextPage}
-        >
-          {isFetchingNextPage
-            ? "Loading more..."
-            : hasNextPage
-            ? "Load More"
-            : "Nothing more to load"}
-        </button>
-        <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
-      </div>
+      <div ref={ref}>{isFetchingNextPage ? "Loading more..." : null}</div>
     </section>
   );
 };
