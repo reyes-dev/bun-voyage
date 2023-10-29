@@ -4,6 +4,8 @@
 
 Small front-end mini-project consuming the [SpaceX API](https://github.com/r-spacex/SpaceX-API).
 
+Check out [the live demo of Bun Voyage](https://reyes-dev.github.io/bun-voyage/).
+
 ## Technologies
 
 - [React](https://react.dev/) with [Typescript](https://www.typescriptlang.org/)
