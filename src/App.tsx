@@ -1,6 +1,7 @@
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ListDragonsView } from "./views/list-dragons/list-dragons-view";
+import { ListCrewView } from "./views/list-crew/list-crew-view";
 
 /* -- Set up react-query and consume spacex api
  * - Focus on displaying any data with simple queries for now
@@ -30,7 +31,7 @@ function Homepage() {
     <>
       <h1>Bun Voyage</h1>
       <main>
-        <ListDragonsView />
+        <ListCrewView />
       </main>
     </>
   );
