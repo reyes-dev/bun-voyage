@@ -13,8 +13,19 @@ import { ListCrewView } from "./views/list-crew/list-crew-view";
  * */
 
 // Defining a default query function that receives a query key
-const defaultQueryFn = async ({ queryKey }) => {
-  const data = await fetch(`https://api.spacexdata.com/v4${queryKey[0]}`);
+const defaultQueryFn = async ({ queryKey, pageParam }) => {
+  const data = await fetch(
+    `https://api.spacexdata.com/v4${queryKey[0]}/query`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        options: { page: pageParam, limit: 3 },
+      }),
+    },
+  );
   return data.json();
 };
 

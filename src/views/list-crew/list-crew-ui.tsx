@@ -1,5 +1,5 @@
 export const ListCrewUI = ({ crew }) => {
-  const crewList = crew.map((member) => (
+  const crewList = crew.docs.map((member) => (
     <ul key={member.id}>
       <img src={member.image} width="250" />
       <li>Full Name: {member.name}</li>
