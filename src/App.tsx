@@ -5,12 +5,25 @@ import { ListDragonsView } from "./views/list-dragons/list-dragons-view";
 /* -- Set up react-query and consume spacex api
  * - Focus on displaying any data with simple queries for now
  * - Later try implementing infinite scrolling (assuming the spacex API has enough data)
+ * - I'll write a default query function since every endpoint works basically the same
  * -- Styled Components and CSS
  * - flex layout with buttons to filter ships
  * - grid layout to display the ships in cards
  * */
 
-const queryClient = new QueryClient();
+// Defining a default query function that receives a query key
+const defaultQueryFn = async ({ queryKey }) => {
+  const data = await fetch(`https://api.spacexdata.com/v4${queryKey[0]}`);
+  return data.json();
+};
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: defaultQueryFn,
+    },
+  },
+});
 
 function Homepage() {
   return (

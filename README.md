@@ -22,4 +22,19 @@ hit a SpaceX endpoint and organize the retrieved data, displaying it nicely on t
 I chose the `https://api.spacexdata.com/v4/dragons` endpoint to fetch data of the SpaceX Dragon spacecrafts
 With the `useQuery` hook I was easily able to fetch the data:
 
-`const { isPending, isError, data, error } = useQuery({ queryKey: ["dragons"], queryFn: fetchDragons });`
+```
+const { isPending, isError, data, error } = useQuery({
+    queryKey: ["dragons"],
+    queryFn: fetchDragons
+});
+```
+
+In order to avoid writing query functions that were basically the same every time,
+I wrote a simple default query function:
+
+```
+const defaultQueryFn = async ({ queryKey }) => {
+  const data = await fetch(`https://api.spacexdata.com/v4${queryKey[0]}`);
+  return data.json();
+};
+```
