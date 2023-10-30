@@ -7,8 +7,8 @@ import { ListCrewView } from "./views/list-crew/list-crew-view";
  * - Focus on displaying any data with simple queries for now
  * - Upgrade the 'load more' style of fetching more content to an 'infinite scroll' style
  * -- Styled Components and CSS
- * - flex layout with buttons to filter ships
- * - grid layout to display the ships in cards
+ * - flex layout with buttons to query different endpoints
+ * - grid layout to display cards in 3's
  * */
 
 // Defining a default query function that receives a query key

@@ -57,6 +57,10 @@ button:focus-visible {
 li {
   list-style-type: none;
 }
+ul {
+  margin: 0;
+  padding: 0;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
