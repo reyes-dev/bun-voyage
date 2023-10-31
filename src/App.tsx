@@ -9,6 +9,7 @@ import { ListCrewView } from "./views/list-crew/list-crew-view";
  * -- Styled Components and CSS
  * - flex layout with buttons to query different endpoints
  * - grid layout to display cards in 3's
+ * - Layout should revert to block or flex on narrow viewports
  * */
 
 // Defining a default query function that receives a query key

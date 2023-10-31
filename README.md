@@ -74,3 +74,70 @@ useEffect(() => {
 ...
 <div ref={ref}>{isFetchingNextPage ? "Loading more..." : null}</div>
 ```
+
+### styled-components
+
+Styled-components is a library that lets you write CSS in JavaScript by giving you
+the ability to create a `StyledComponent`, a component with styles. I began by writing
+a simple container for a grid layout:
+
+```
+import styled from "styled-components";
+
+const GridContainer = styled.div`
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+`;
+```
+
+I can use it in JSX like so:
+
+```
+// Works as a component that has the given CSS styles applied
+<GridContainer>
+    <MyComponent />
+</GridContainer>
+```
+
+I also wrote card wrapper styled component with an optional second style:
+
+```
+const Card = styled.div<{ $loadBtn?: boolean }>`
+  background-color: #001d3d;
+  border-radius: 8px;
+  padding: 1em;
+
+  ${(props) =>
+    props.$loadBtn &&
+    css`
+      margin-top: 8px;
+    `};
+`;
+```
+
+It looks esoteric, but all that's happening here is that the styled component now
+has the option to take a property, `$loadBtn` that when passed, applies the extra styles
+by interpolating a function into the string literal:
+
+```
+${(props) =>
+    props.$loadBtn &&
+    css`
+      margin-top: 8px;
+    `};
+```
+
+In JSX the property is added in an interesting way:
+
+```
+<Card>
+    {/* main content... */}
+</Card>
+<Card $loadBtn>
+   <button>Load More</button>
+</Card>
+```
+
+The `<Card />` component with the `$loadBtn` property has the styles from the
+interpolated function applied, while the one without it does not.

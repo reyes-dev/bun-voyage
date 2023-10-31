@@ -1,17 +1,23 @@
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import styled from "styled-components";
-
-const Card = styled.div`
-  background-color: #001d3d;
-  border-radius: 3px;
-  padding: 1em;
-`;
+import styled, { css } from "styled-components";
 
 const GridContainer = styled.div`
   display: grid;
   grid-gap: 8px;
   grid-template-columns: repeat(3, 1fr);
+`;
+
+const Card = styled.div<{ $loadBtn?: boolean }>`
+  background-color: #001d3d;
+  border-radius: 8px;
+  padding: 1em;
+
+  ${(props) =>
+    props.$loadBtn &&
+    css`
+      margin-top: 8px;
+    `};
 `;
 
 export const ListCrewUI = ({
@@ -53,17 +59,19 @@ export const ListCrewUI = ({
           );
         })}
       </GridContainer>
-      <button
-        onClick={() => fetchNextPage()}
-        disabled={!hasNextPage || isFetchingNextPage}
-        ref={ref}
-      >
-        {isFetchingNextPage
-          ? "Loading more..."
-          : hasNextPage
-          ? "Load More"
-          : "Nothing more to load"}
-      </button>
+      <Card $loadBtn>
+        <button
+          onClick={() => fetchNextPage()}
+          disabled={!hasNextPage || isFetchingNextPage}
+          ref={ref}
+        >
+          {isFetchingNextPage
+            ? "Loading more..."
+            : hasNextPage
+            ? "Load More"
+            : "Nothing more to load"}
+        </button>
+      </Card>
     </section>
   );
 };
